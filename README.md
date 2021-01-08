@@ -1,6 +1,6 @@
 # ECOINDEX PYTHON
 
-This basic module provides a simple interface to get the [Ecoindex](https://www.ecoindex.fr) based on 3 parameters:
+This basic module provides a simple interface to get the [Ecoindex](http://www.ecoindex.fr) based on 3 parameters:
 
 - The number of DOM elements in the page
 - The size of the page
