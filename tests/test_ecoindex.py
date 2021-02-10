@@ -10,6 +10,22 @@ from ecoindex.models import Ecoindex
 from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 
 
+def test_ecoindex_model_empty():
+    ecoindex = Ecoindex()
+    assert ecoindex.ges == None
+    assert ecoindex.grade == None
+    assert ecoindex.score == None
+    assert ecoindex.water == None
+
+
+def test_ecoindex_model():
+    ecoindex = Ecoindex(grade="C", score=34.5, ges=12.1, water=5.3)
+    assert ecoindex.ges == 12.1
+    assert ecoindex.grade == "C"
+    assert ecoindex.score == 34.5
+    assert ecoindex.water == 5.3
+
+
 def test_get_quantiles():
     quantile_size = get_quantile(quantiles_size, 2500)
     assert quantile_size == 15.086372025739513
