@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import BaseModel
 
 
 class Ecoindex(BaseModel):
-    grade: Literal["A", "B", "C", "D", "E", "F", "G"]
-    score: float
-    ges: float
-    water: float
+    grade: Optional[Literal["A", "B", "C", "D", "E", "F", "G"]] = None
+    score: Optional[float] = None
+    ges: Optional[float] = None
+    water: Optional[float] = None

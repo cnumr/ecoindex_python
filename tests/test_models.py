@@ -13,13 +13,19 @@ def test_model_valid():
 
 def test_model_invalid():
     with raises(ValidationError) as error:
-        Ecoindex(grade="dummy")
+        Ecoindex(grade="dummy", score="dummy")
 
     assert (
         "(type=value_error.const; given=dummy; permitted=('A', 'B', 'C', 'D', 'E', 'F', 'G'))"
         in str(error.value)
     )
 
-    assert "4 validation errors for Ecoindex" in str(error.value)
+    assert "value is not a valid float (type=type_error.float)" in str(error.value)
 
-    assert "field required (type=value_error.missing)" in str(error.value)
+
+def test_ecoindex_model_empty():
+    ecoindex = Ecoindex()
+    assert ecoindex.ges == None
+    assert ecoindex.grade == None
+    assert ecoindex.score == None
+    assert ecoindex.water == None
