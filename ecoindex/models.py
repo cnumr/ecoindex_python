@@ -1,4 +1,3 @@
-from pprint import pprint
 from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
@@ -29,6 +28,3 @@ class Ecoindex(BaseModel):
         description="Is the equivalent water consumption (in `cl`) of the page",
         ge=0,
     )
-
-
-pprint(Ecoindex.schema_json())
