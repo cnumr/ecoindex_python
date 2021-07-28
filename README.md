@@ -35,3 +35,7 @@ Ecoindex(grade='B', score=67, ges=1.66, water=2.49)
 ```shell
 pytest
 ```
+
+## [Contributing](CONTRIBUTING.md)
+
+## [Code of conduct](CODE_OF_CONDUCT.md)
