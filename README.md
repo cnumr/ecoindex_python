@@ -1,5 +1,8 @@
 # ECOINDEX PYTHON
 
+![Quality check](https://github.com/cnumr/ecoindex_python/workflows/Quality checks/badge.svg)
+![Security threat](https://github.com/cnumr/ecoindex_python/workflows/CodeQL/badge.svg)
+
 This basic module provides a simple interface to get the [Ecoindex](http://www.ecoindex.fr) based on 3 parameters:
 
 - The number of DOM elements in the page
