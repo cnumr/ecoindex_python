@@ -14,7 +14,6 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.8"
 pydantic = "^1.8.2"
-Scrapy = "^2.5.0"
 selenium = "^3.141.0"
 chromedriver-binary = "^92.0.4515"
 
