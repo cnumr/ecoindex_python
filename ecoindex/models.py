@@ -1,6 +1,10 @@
-from typing import Literal, Optional
+from datetime import datetime
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field
+from pydantic.networks import HttpUrl
+
+PageType = str
 
 
 class Ecoindex(BaseModel):
@@ -28,3 +32,30 @@ class Ecoindex(BaseModel):
         description="Is the equivalent water consumption (in `cl`) of the page",
         ge=0,
     )
+
+
+class Page(BaseModel):
+    logs: List
+    outer_html: str
+    nodes: List
+
+
+class PageMetrics(BaseModel):
+    size: float
+    nodes: int
+    requests: int
+
+
+class WindowSize(BaseModel):
+    height: int
+    width: int
+
+    def __str__(self) -> str:
+        return f"{self.width},{self.height}"
+
+
+class Result(Ecoindex, PageMetrics):
+    url: Optional[HttpUrl] = None
+    date: Optional[datetime] = None
+    resolution: Optional[WindowSize] = None
+    page_type: Optional[PageType] = None

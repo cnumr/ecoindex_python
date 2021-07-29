@@ -12,6 +12,8 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 ## Requirements
 
 - Python ^3.8
+- [Poetry](https://python-poetry.org/)
+- Google Chrome installed on your computer
 
 ## Install
 
@@ -22,15 +24,23 @@ pip install ecoindex
 ## Use
 
 ```python
-from ecoindex import get_ecoindex
 from pprint import pprint
 
-result = get_ecoindex(dom=100, size=100, requests=100)
-pprint(result)
-```
+from ecoindex.ecoindex import get_ecoindex
+from ecoindex.scrap import get_page_analysis
 
-```python
-Ecoindex(grade='B', score=67, ges=1.66, water=2.49)
+# Get ecoindex from DOM elements, size of page and requests of the page
+ecoindex = get_ecoindex(dom=100, size=100, requests=100)
+pprint(ecoindex)
+
+> Ecoindex(grade='B', score=67, ges=1.66, water=2.49)
+
+# Analyse a given webpage with a resolution of 1920x1080 pixel (default)
+page_analysis = get_page_analysis(url="http://ecoindex.fr")
+pprint(page_analysis)
+
+> Result(size=119.292, nodes=45, requests=7, grade='A', score=89.0, ges=1.22, water=1.83, url=HttpUrl('http://ecoindex.fr', scheme='http', host='ecoindex.fr', tld='fr', host_type='domain'), date=datetime.datetime(2021, 7, 29, 13, 46, 54, 396697), resolution=WindowSize(height=1080, width=1920), page_type=None)
+
 ```
 
 ## Tests
