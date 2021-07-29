@@ -1,4 +1,4 @@
-from ecoindex.models import Ecoindex
+from ecoindex.models import Ecoindex, Page, Result
 from pydantic import ValidationError
 from pytest import raises
 
@@ -29,3 +29,31 @@ def test_ecoindex_model_empty():
     assert ecoindex.grade == None
     assert ecoindex.score == None
     assert ecoindex.water == None
+
+
+def test_model_page():
+    logs = ["Logs of my page"]
+    outer_html = "Html of my page"
+    nodes = ["node1", "node2", "node3"]
+
+    page = Page(
+        logs=logs,
+        outer_html=outer_html,
+        nodes=nodes,
+    )
+
+    assert page.logs == logs
+    assert page.outer_html == outer_html
+    assert page.nodes == nodes
+
+    with raises(ValidationError):
+        Page(logs=logs)
+
+
+def test_result_model():
+    result = Result(size=2500, nodes=500, requests=100)
+    assert result.score is None
+    assert result.page_type is None
+    assert result.size == 2500
+    assert result.nodes == 500
+    assert result.requests == 100
