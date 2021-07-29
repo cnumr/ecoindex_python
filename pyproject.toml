@@ -6,10 +6,11 @@ authors = ["Vincent Vatelot <vincent.vatelot@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "http://www.ecoindex.fr"
-repository = "https://github.com/vvatelot/ecoindex_python"
+repository = "https://github.com/cnumr/ecoindex_python"
 include = [
     "LICENSE",
 ]
+
 [tool.poetry.dependencies]
 python = "^3.8"
 pydantic = "^1.8.2"

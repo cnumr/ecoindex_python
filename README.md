@@ -1,5 +1,8 @@
 # ECOINDEX PYTHON
 
+![Quality check](https://github.com/cnumr/ecoindex_python/workflows/Quality%20checks/badge.svg)
+[![PyPI version](https://badge.fury.io/py/ecoindex.svg)](https://badge.fury.io/py/ecoindex)
+
 This basic module provides a simple interface to get the [Ecoindex](http://www.ecoindex.fr) based on 3 parameters:
 
 - The number of DOM elements in the page
@@ -35,3 +38,7 @@ Ecoindex(grade='B', score=67, ges=1.66, water=2.49)
 ```shell
 pytest
 ```
+
+## [Contributing](CONTRIBUTING.md)
+
+## [Code of conduct](CODE_OF_CONDUCT.md)
