@@ -78,10 +78,15 @@ class WindowSize(BaseModel):
 
 
 class WebPage(BaseModel):
-    resolution: Optional[WindowSize] = Field(
+    width: Optional[int] = Field(
         default=None,
-        title="Page resolution",
-        description="Resolution of the simulated window in pixel",
+        title="Page Width",
+        description="Width of the simulated window in pixel",
+    )
+    height: Optional[int] = Field(
+        default=None,
+        title="Page Height",
+        description="Height of the simulated window in pixel",
     )
     url: Optional[HttpUrl] = Field(
         default=None, title="Page url", description="Url of the analysed page"
