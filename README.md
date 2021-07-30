@@ -39,7 +39,7 @@ pprint(ecoindex)
 page_analysis = get_page_analysis(url="http://ecoindex.fr")
 pprint(page_analysis)
 
-> Result(size=119.292, nodes=45, requests=7, grade='A', score=89.0, ges=1.22, water=1.83, url=HttpUrl('http://ecoindex.fr', scheme='http', host='ecoindex.fr', tld='fr', host_type='domain'), date=datetime.datetime(2021, 7, 29, 13, 46, 54, 396697), resolution=WindowSize(height=1080, width=1920), page_type=None)
+> Result(size=119.292, nodes=45, requests=7, grade='A', score=89.0, ges=1.22, water=1.83, url=HttpUrl('http://ecoindex.fr', scheme='http', host='ecoindex.fr', tld='fr', host_type='domain'), date=datetime.datetime(2021, 7, 29, 13, 46, 54, 396697), height=1080, width=1920, page_type=None)
 
 ```
 
