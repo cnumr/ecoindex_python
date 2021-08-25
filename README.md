@@ -26,8 +26,8 @@ pip install ecoindex
 ```python
 from pprint import pprint
 
-from ecoindex.ecoindex import get_ecoindex
-from ecoindex.scrap import get_page_analysis
+from ecoindex import get_ecoindex
+from ecoindex import get_page_analysis
 
 # Get ecoindex from DOM elements, size of page and requests of the page
 ecoindex = get_ecoindex(dom=100, size=100, requests=100)
