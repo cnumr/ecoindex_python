@@ -9,6 +9,8 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 - The size of the page
 - The number of external requests of the page
 
+> **Current limitation:** This does not work well with SPA.
+
 ## Requirements
 
 - Python ^3.8
@@ -41,6 +43,14 @@ pprint(page_analysis)
 
 > Result(size=119.292, nodes=45, requests=7, grade='A', score=89.0, ges=1.22, water=1.83, url=HttpUrl('http://ecoindex.fr', scheme='http', host='ecoindex.fr', tld='fr', host_type='domain'), date=datetime.datetime(2021, 7, 29, 13, 46, 54, 396697), height=1080, width=1920, page_type=None)
 
+```
+
+## Use remote chrome
+
+You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). Just set the environment variable `REMOTE_CHROMEDRIVER` with the url of the remote chrome browser:
+
+```bash
+export REMOTE_CHROMEDRIVER="http://localhost:3000/webdriver"
 ```
 
 ## Tests
