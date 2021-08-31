@@ -47,10 +47,10 @@ pprint(page_analysis)
 
 ## Use remote chrome
 
-You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). Just set the environment variable `REMOTE_CHROMEDRIVER` with the url of the remote chrome browser:
+You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). Just set the environment variable `REMOTE_CHROME_URL` with the url of the remote chrome browser:
 
 ```bash
-export REMOTE_CHROMEDRIVER="http://localhost:3000/webdriver"
+export REMOTE_CHROME_URL="http://localhost:3000/webdriver"
 ```
 
 ## Tests
