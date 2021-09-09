@@ -1,14 +1,15 @@
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from pydantic.networks import HttpUrl
+from sqlmodel import Field, SQLModel
 
 PageType = str
 
 
-class Ecoindex(BaseModel):
-    grade: Optional[Literal["A", "B", "C", "D", "E", "F", "G"]] = Field(
+class Ecoindex(SQLModel):
+    grade: Optional[str] = Field(
         default=None,
         title="Ecoindex grade",
         description="Is the corresponding ecoindex grade of the page (from A to G)",
@@ -40,7 +41,7 @@ class Page(BaseModel):
     nodes: List
 
 
-class PageMetrics(BaseModel):
+class PageMetrics(SQLModel):
     size: float = Field(
         default=...,
         title="Page size",
@@ -77,7 +78,7 @@ class WindowSize(BaseModel):
         return f"{self.width},{self.height}"
 
 
-class WebPage(BaseModel):
+class WebPage(SQLModel):
     width: Optional[int] = Field(
         default=None,
         title="Page Width",
