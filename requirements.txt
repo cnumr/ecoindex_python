@@ -1,9 +1,9 @@
-chromedriver-binary==92.0.4515.43.0
-greenlet==1.1.1; python_version >= "3" and platform_machine in "x86_64 X86_64 aarch64 AARCH64 ppc64le PPC64LE amd64 AMD64 win32 WIN32" and python_full_version >= "3.6.1" and python_full_version < "4.0.0"
+chromedriver-binary==94.0.4606.61.0
+greenlet==1.1.2; python_version >= "3" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and python_full_version >= "3.6.1" and python_full_version < "4.0.0"
 pydantic==1.8.2; python_full_version >= "3.6.1"
 selenium==3.141.0
-sqlalchemy2-stubs==0.0.2a15; python_full_version >= "3.6.1" and python_full_version < "4.0.0" and python_version >= "3.6"
-sqlalchemy==1.4.23; python_full_version >= "3.6.1" and python_full_version < "4.0.0"
+sqlalchemy2-stubs==0.0.2a17; python_full_version >= "3.6.1" and python_full_version < "4.0.0" and python_version >= "3.6"
+sqlalchemy==1.4.25; python_full_version >= "3.6.1" and python_full_version < "4.0.0"
 sqlmodel==0.0.4; python_full_version >= "3.6.1" and python_full_version < "4.0.0"
-typing-extensions==3.10.0.0; python_full_version >= "3.6.1" and python_full_version < "4.0.0" and python_version >= "3.6"
-urllib3==1.26.6; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version < "4"
+typing-extensions==3.10.0.2; python_full_version >= "3.6.1" and python_full_version < "4.0.0" and python_version >= "3.6"
+urllib3==1.26.7; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version < "4"

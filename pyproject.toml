@@ -15,7 +15,7 @@ include = [
 python = "^3.8"
 pydantic = "^1.8.2"
 selenium = "^3.141.0"
-chromedriver-binary = "^92.0.4515"
+chromedriver-binary = "^94"
 sqlmodel = "^0.0.4"
 
 [tool.poetry.dev-dependencies]
