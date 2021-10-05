@@ -16,7 +16,7 @@ def test_model_invalid():
         Ecoindex(grade="dummy", score="dummy")
 
     assert (
-        "(type=value_error.const; given=dummy; permitted=('A', 'B', 'C', 'D', 'E', 'F', 'G'))"
+        "1 validation error for Ecoindex\nscore\n  value is not a valid float"
         in str(error.value)
     )
 
