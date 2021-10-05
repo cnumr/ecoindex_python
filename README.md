@@ -9,7 +9,7 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 - The size of the page
 - The number of external requests of the page
 
-> **Current limitation:** This does not work well with SPA.
+> **Current limitation:** This does not work well with SPA
 
 ## Requirements
 
