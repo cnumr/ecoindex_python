@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ecoindex"
-version = "v1.6.0"
+version = "v1.7.0"
 description = "Ecoindex module provides a simple way to measure the Ecoindex score based on the 3 parameters: The DOM elements of the page, the size of the page and the number of external requests of the page"
 authors = ["Vincent Vatelot <vincent.vatelot@gmail.com>"]
 license = "MIT"
