@@ -14,7 +14,7 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 ## Requirements
 
 - Python ^3.8 with [pip](https://pip.pypa.io/en/stable/installation/)
-- Google Chrome installed on your computer
+- Google Chrome installed on your computer (or you can use [browserless/chrome](https://hub.docker.com/r/browserless/chrome), see [more about configuration](#use-remote-chrome))
 
 ## Install
 
@@ -46,16 +46,30 @@ pprint(page_analysis)
 
 ## Use remote chrome
 
-You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). Just set the environment variable `REMOTE_CHROME_URL` with the url of the remote chrome browser:
+You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). You just have to run the docker image:
+
+```bash
+docker run -p 3000:3000 browserless/chrome
+```
+
+And then set the environment variable `REMOTE_CHROME_URL` with the url of the remote chrome browser (or set it in the `.env` file):
 
 ```bash
 export REMOTE_CHROME_URL="http://localhost:3000/webdriver"
 ```
 
+## Contribute
+
+You need [poetry](https://python-poetry.org/) to install and manage dependencies. Once poetry installed, run :
+
+```bash
+poetry install
+```
+
 ## Tests
 
 ```shell
-pytest
+poetry run pytest
 ```
 
 ## [Contributing](CONTRIBUTING.md)

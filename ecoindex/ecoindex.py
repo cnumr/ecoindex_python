@@ -4,7 +4,9 @@ from ecoindex.models import Ecoindex
 from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 
 
-def get_quantile(quantiles: List[Union[int, float]], value: Union[int, float]) -> float:
+async def get_quantile(
+    quantiles: List[Union[int, float]], value: Union[int, float]
+) -> float:
     for i in range(1, len(quantiles) + 1):
         if value < quantiles[i]:
             return i + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1])
@@ -12,16 +14,16 @@ def get_quantile(quantiles: List[Union[int, float]], value: Union[int, float]) -
     return len(quantiles)
 
 
-def get_score(dom: int, size: float, requests: int) -> float:
-    q_dom = get_quantile(quantiles_dom, dom)
-    q_size = get_quantile(quantiles_size, size)
-    q_req = get_quantile(quantiles_req, requests)
+async def get_score(dom: int, size: float, requests: int) -> float:
+    q_dom = await get_quantile(quantiles_dom, dom)
+    q_size = await get_quantile(quantiles_size, size)
+    q_req = await get_quantile(quantiles_req, requests)
 
     return round(100 - 5 * (3 * q_dom + 2 * q_req + q_size) / 6)
 
 
-def get_ecoindex(dom: int, size: float, requests: int) -> Ecoindex:
-    score = get_score(dom=dom, size=size, requests=requests)
+async def get_ecoindex(dom: int, size: float, requests: int) -> Ecoindex:
+    score = await get_score(dom=dom, size=size, requests=requests)
 
     return Ecoindex(
         score=score,
