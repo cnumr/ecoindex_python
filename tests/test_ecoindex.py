@@ -1,3 +1,4 @@
+import pytest
 from ecoindex.ecoindex import (
     get_ecoindex,
     get_grade,
@@ -10,24 +11,33 @@ from ecoindex.models import Ecoindex
 from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 
 
-def test_get_quantiles():
-    quantile_size = get_quantile(quantiles_size, 2500)
-    assert quantile_size == 15.086372025739513
+@pytest.mark.asyncio
+class TestAsyncGroup:
+    async def test_get_quantiles(self):
+        quantile_size = await get_quantile(quantiles_size, 2500)
+        assert quantile_size == 15.086372025739513
 
-    quantile_dom = get_quantile(quantiles_dom, 150)
-    assert quantile_dom == 3.892857142857143
+        quantile_dom = await get_quantile(quantiles_dom, 150)
+        assert quantile_dom == 3.892857142857143
 
-    quantile_req = get_quantile(quantiles_req, 23)
-    assert quantile_req == 3.8
+        quantile_req = await get_quantile(quantiles_req, 23)
+        assert quantile_req == 3.8
 
+    async def test_get_score(self):
+        assert await get_score(dom=100, requests=100, size=100) == 67
+        assert await get_score(dom=100, requests=100, size=1000) == 62
+        assert await get_score(dom=100, requests=100, size=10000) == 53
+        assert await get_score(dom=200, requests=200, size=10000) == 41
+        assert await get_score(dom=2355, requests=267, size=2493) == 5
+        assert await get_score(dom=240, requests=20, size=331) == 78
 
-def test_get_score():
-    assert get_score(dom=100, requests=100, size=100) == 67
-    assert get_score(dom=100, requests=100, size=1000) == 62
-    assert get_score(dom=100, requests=100, size=10000) == 53
-    assert get_score(dom=200, requests=200, size=10000) == 41
-    assert get_score(dom=2355, requests=267, size=2493) == 5
-    assert get_score(dom=240, requests=20, size=331) == 78
+    async def test_get_ecoindex(self):
+        assert await get_ecoindex(dom=100, requests=100, size=100) == Ecoindex(
+            score=67,
+            grade="B",
+            ges=1.66,
+            water=2.49,
+        )
 
 
 def test_get_grade():
@@ -38,15 +48,6 @@ def test_get_grade():
     assert get_grade(50.2) == "C"
     assert get_grade(10) == "F"
     assert get_grade(100) == "A"
-
-
-def test_get_ecoindex():
-    assert get_ecoindex(dom=100, requests=100, size=100) == Ecoindex(
-        score=67,
-        grade="B",
-        ges=1.66,
-        water=2.49,
-    )
 
 
 def test_get_greenhouse_gases_emission():

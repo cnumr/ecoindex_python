@@ -15,12 +15,12 @@ from ecoindex.ecoindex import get_ecoindex
 from ecoindex.models import Page, PageMetrics, PageType, Result, WindowSize
 
 
-def get_page_analysis(
+async def get_page_analysis(
     url: HttpUrl,
     window_size: Optional[WindowSize] = WindowSize(width=1920, height=1080),
 ) -> Result:
-    page_metrics, page_type = scrap_page(url=url, window_size=window_size)
-    ecoindex = get_ecoindex(
+    page_metrics, page_type = await scrap_page(url=url, window_size=window_size)
+    ecoindex = await get_ecoindex(
         dom=page_metrics.nodes, size=page_metrics.size, requests=page_metrics.requests
     )
     return Result(
@@ -39,7 +39,9 @@ def get_page_analysis(
     )
 
 
-def scrap_page(url: HttpUrl, window_size: WindowSize) -> Tuple[PageMetrics, PageType]:
+async def scrap_page(
+    url: HttpUrl, window_size: WindowSize
+) -> Tuple[PageMetrics, PageType]:
     remote_chrome = getenv("REMOTE_CHROME_URL")
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -68,15 +70,15 @@ def scrap_page(url: HttpUrl, window_size: WindowSize) -> Tuple[PageMetrics, Page
     # TODO : Find a way to wait for all elements downloaded after scrolling to bottom
     sleep(1)
 
-    page_type = get_page_type(driver)
-    page_metrics = get_page_metrics(driver)
+    page_type = await get_page_type(driver)
+    page_metrics = await get_page_metrics(driver)
 
     driver.quit()
 
     return page_metrics, page_type
 
 
-def get_page_metrics(driver: Chrome) -> PageMetrics:
+async def get_page_metrics(driver: Chrome) -> PageMetrics:
     page = Page(
         logs=driver.get_log("performance"),
         outer_html=driver.execute_script("return document.documentElement.outerHTML"),
@@ -95,7 +97,7 @@ def get_page_metrics(driver: Chrome) -> PageMetrics:
     )
 
 
-def get_page_type(driver: Chrome) -> Optional[PageType]:
+async def get_page_type(driver: Chrome) -> Optional[PageType]:
     try:
         page_type = driver.find_element_by_xpath(
             "//meta[@property='og:type']"
