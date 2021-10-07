@@ -1,6 +1,6 @@
 chromedriver-binary==94.0.4606.61.0
 greenlet==1.1.2; python_version >= "3" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and python_full_version >= "3.6.1" and python_full_version < "4.0.0"
-pydantic==1.8.2; python_full_version >= "3.6.1"
+pydantic==1.8.2; python_full_version >= "3.6.1" and python_full_version < "4.0.0"
 selenium==3.141.0
 sqlalchemy2-stubs==0.0.2a17; python_full_version >= "3.6.1" and python_full_version < "4.0.0" and python_version >= "3.6"
 sqlalchemy==1.4.25; python_full_version >= "3.6.1" and python_full_version < "4.0.0"
