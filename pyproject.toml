@@ -18,7 +18,7 @@ chromedriver-binary = "^94"
 sqlmodel = "^0.0.4"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2"
 black = "^21.7b0"
 pytest-asyncio = "^0.15.1"
 
