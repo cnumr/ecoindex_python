@@ -49,7 +49,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "chromedriver-binary"
-version = "94.0.4606.61.0"
+version = "95.0.4638.17.0"
 description = "Installer for chromedriver."
 category = "main"
 optional = false
@@ -325,7 +325,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a4993bcc243ef19b39ecb27e22fe3f39e1b9e16ed7a4396f9cf0b47cc7799d07"
+content-hash = "1470129ee2be6e6a6cb3f10151009c6278cb0acacb2906f48405d481ac9ac9a9"
 
 [metadata.files]
 atomicwrites = [
@@ -341,7 +341,7 @@ black = [
     {file = "black-21.9b0.tar.gz", hash = "sha256:7de4cfc7eb6b710de325712d40125689101d21d25283eed7e9998722cf10eb91"},
 ]
 chromedriver-binary = [
-    {file = "chromedriver-binary-94.0.4606.61.0.tar.gz", hash = "sha256:a3e70a6d02616874319beafaa720866bfca86651f54b40ad4513bdddecdba02e"},
+    {file = "chromedriver-binary-95.0.4638.17.0.tar.gz", hash = "sha256:c91cfc47cfd99c0d55b08abd93ecbd163a487336a1486fb4cbc78096e0fa8c26"},
 ]
 click = [
     {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
