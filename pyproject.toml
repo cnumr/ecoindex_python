@@ -13,7 +13,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-selenium = "^3.141.0"
+selenium = ">=3.141,<5.0"
 chromedriver-binary = ">=94,<96"
 sqlmodel = "^0.0.4"
 
