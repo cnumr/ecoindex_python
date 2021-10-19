@@ -18,8 +18,15 @@ from ecoindex.models import Page, PageMetrics, PageType, Result, WindowSize
 async def get_page_analysis(
     url: HttpUrl,
     window_size: Optional[WindowSize] = WindowSize(width=1920, height=1080),
+    wait_before_scroll: Optional[int] = 1,
+    wait_after_scroll: Optional[int] = 1,
 ) -> Result:
-    page_metrics, page_type = await scrap_page(url=url, window_size=window_size)
+    page_metrics, page_type = await scrap_page(
+        url=url,
+        window_size=window_size,
+        wait_before_scroll=wait_before_scroll,
+        wait_after_scroll=wait_after_scroll,
+    )
     ecoindex = await get_ecoindex(
         dom=page_metrics.nodes, size=page_metrics.size, requests=page_metrics.requests
     )
@@ -40,7 +47,10 @@ async def get_page_analysis(
 
 
 async def scrap_page(
-    url: HttpUrl, window_size: WindowSize
+    url: HttpUrl,
+    window_size: WindowSize,
+    wait_before_scroll: int,
+    wait_after_scroll: int,
 ) -> Tuple[PageMetrics, PageType]:
     remote_chrome = getenv("REMOTE_CHROME_URL")
     chrome_options = Options()
@@ -66,9 +76,9 @@ async def scrap_page(
 
     driver.set_script_timeout(10)
     driver.get(url)
+    driver.implicitly_wait(wait_before_scroll)
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    # TODO : Find a way to wait for all elements downloaded after scrolling to bottom
-    sleep(1)
+    driver.implicitly_wait(wait_after_scroll)
 
     page_type = await get_page_type(driver)
     page_metrics = await get_page_metrics(driver)
