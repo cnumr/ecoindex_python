@@ -66,9 +66,9 @@ async def scrap_page(
 
     driver.set_script_timeout(10)
     driver.get(url)
+    driver.implicitly_wait(3)
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    # TODO : Find a way to wait for all elements downloaded after scrolling to bottom
-    sleep(1)
+    driver.implicitly_wait(3)
 
     page_type = await get_page_type(driver)
     page_metrics = await get_page_metrics(driver)
