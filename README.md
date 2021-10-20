@@ -14,7 +14,7 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 ## Requirements
 
 - Python ^3.8 with [pip](https://pip.pypa.io/en/stable/installation/)
-- Google Chrome installed on your computer (or you can use [browserless/chrome](https://hub.docker.com/r/browserless/chrome), see [more about configuration](#use-remote-chrome))
+- Google Chrome installed on your computer
 
 ## Install
 
@@ -41,20 +41,6 @@ page_analysis = asyncio.run(get_page_analysis(url="http://ecoindex.fr"))
 pprint(page_analysis)
 
 > Result(width=1920, height=1080, url=HttpUrl('http://ecoindex.fr', scheme='http', host='ecoindex.fr', tld='fr', host_type='domain'), size=422.126, nodes=54, requests=12, grade='A', score=86.0, ges=1.28, water=1.92, date=datetime.datetime(2021, 10, 8, 10, 20, 14, 73831), page_type=None)
-```
-
-## Use remote chrome
-
-You can use a remote chrome browser such as [browserless/chrome](https://hub.docker.com/r/browserless/chrome). You just have to run the docker image:
-
-```bash
-docker run -p 3000:3000 browserless/chrome
-```
-
-And then set the environment variable `REMOTE_CHROME_URL` with the url of the remote chrome browser (or set it in the `.env` file):
-
-```bash
-export REMOTE_CHROME_URL="http://localhost:3000/webdriver"
 ```
 
 ## Contribute
