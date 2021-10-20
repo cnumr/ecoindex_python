@@ -1,7 +1,6 @@
 from datetime import datetime
 from json import loads
 from sys import getsizeof
-from time import sleep
 from typing import Optional, Tuple
 
 import undetected_chromedriver.v2 as uc
