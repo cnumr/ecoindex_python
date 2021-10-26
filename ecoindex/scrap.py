@@ -1,15 +1,12 @@
 from datetime import datetime
 from json import loads
-from os import getenv
 from sys import getsizeof
-from time import sleep
 from typing import Optional, Tuple
 
-import chromedriver_binary
+import undetected_chromedriver.v2 as uc
 from pydantic.networks import HttpUrl
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import Chrome, DesiredCapabilities, Remote
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import Chrome, DesiredCapabilities
 
 from ecoindex.ecoindex import get_ecoindex
 from ecoindex.models import Page, PageMetrics, PageType, Result, WindowSize
@@ -52,27 +49,15 @@ async def scrap_page(
     wait_before_scroll: int,
     wait_after_scroll: int,
 ) -> Tuple[PageMetrics, PageType]:
-    remote_chrome = getenv("REMOTE_CHROME_URL")
-    chrome_options = Options()
+    chrome_options = uc.ChromeOptions()
+    chrome_options.headless = True
     chrome_options.add_argument("--headless")
     chrome_options.add_argument(f"--window-size={window_size}")
-    chrome_options.add_argument("--no-sandbox")
 
     capbs = DesiredCapabilities.CHROME.copy()
     capbs["goog:loggingPrefs"] = {"performance": "ALL"}
 
-    driver = (
-        Remote(
-            command_executor=remote_chrome,
-            options=chrome_options,
-            desired_capabilities=capbs,
-        )
-        if remote_chrome
-        else Chrome(
-            desired_capabilities=capbs,
-            chrome_options=chrome_options,
-        )
-    )
+    driver = uc.Chrome(options=chrome_options, desired_capabilities=capbs)
 
     driver.set_script_timeout(10)
     driver.get(url)
