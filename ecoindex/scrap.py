@@ -62,7 +62,9 @@ async def scrap_page(
     driver.set_script_timeout(10)
     driver.get(url)
     driver.implicitly_wait(wait_before_scroll)
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+    driver.execute_script(
+        "window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
+    )
     driver.implicitly_wait(wait_after_scroll)
 
     page_type = await get_page_type(driver)
