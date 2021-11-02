@@ -2,6 +2,7 @@ from datetime import datetime
 from json import loads
 from sys import getsizeof
 from typing import Optional, Tuple
+from warnings import filterwarnings
 
 import undetected_chromedriver.v2 as uc
 from pydantic.networks import HttpUrl
@@ -18,6 +19,7 @@ async def get_page_analysis(
     wait_before_scroll: Optional[int] = 1,
     wait_after_scroll: Optional[int] = 1,
 ) -> Result:
+    filterwarnings(action="ignore")
     page_metrics, page_type = await scrap_page(
         url=url,
         window_size=window_size,
