@@ -52,8 +52,8 @@ async def scrap_page(
     wait_after_scroll: int,
 ) -> Tuple[PageMetrics, PageType]:
     chrome_options = uc.ChromeOptions()
-    # chrome_options.headless = True
-    # chrome_options.add_argument("--headless")
+    chrome_options.headless = True
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument(f"--window-size={window_size}")
 
     capbs = DesiredCapabilities.CHROME.copy()
