@@ -6,7 +6,7 @@ from warnings import filterwarnings
 
 import undetected_chromedriver.v2 as uc
 from pydantic.networks import HttpUrl
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import JavascriptException, NoSuchElementException
 from selenium.webdriver import Chrome, DesiredCapabilities
 
 from ecoindex.ecoindex import get_ecoindex
@@ -64,9 +64,13 @@ async def scrap_page(
     driver.set_script_timeout(10)
     driver.get(url)
     driver.implicitly_wait(wait_before_scroll)
-    driver.execute_script(
-        "window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
-    )
+    try:
+        driver.execute_script(
+            "window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
+        )
+    except JavascriptException:
+        pass
+
     driver.implicitly_wait(wait_after_scroll)
 
     page_type = await get_page_type(driver)
