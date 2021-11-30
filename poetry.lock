@@ -485,7 +485,7 @@ python-versions = "*"
 
 [[package]]
 name = "undetected-chromedriver"
-version = "3.0.5"
+version = "3.0.6"
 description = "selenium.webdriver.Chrome replacement wiht compatiblity for Brave, and other Chromium baed browsers.     not triggered by CloudFlare/Imperva/hCaptcha and such.          NOTE: results may vary due to many factors. No guarantees are given, except for ongoing efforts in understanding detection algorithms."
 category = "main"
 optional = false
@@ -918,7 +918,7 @@ typing-extensions = [
     {file = "typing_extensions-3.10.0.2.tar.gz", hash = "sha256:49f75d16ff11f1cd258e1b988ccff82a3ca5570217d7ad8c5f48205dd99a677e"},
 ]
 undetected-chromedriver = [
-    {file = "undetected-chromedriver-3.0.5.tar.gz", hash = "sha256:9678c96b6678a421f660f0eeb5793d937dc8a1ff91e4238e04a0705da2cb0125"},
+    {file = "undetected-chromedriver-3.0.6.tar.gz", hash = "sha256:5a6908552f275f6b0e5f406582dd2fa3a874965b7b1d3924f3bce94a4a330b4c"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.7-py2.py3-none-any.whl", hash = "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"},
