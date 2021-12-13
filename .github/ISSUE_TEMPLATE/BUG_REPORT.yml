@@ -29,7 +29,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: os
     attributes:
       label: What OS do you use?
       multiple: true
@@ -37,6 +37,13 @@ body:
         - Windows
         - Linux
         - Mac
+  - type: textarea
+    id: urls
+    attributes:
+      label: urls
+      description: Can you provide one or more url example where you have this issue?
+    validations:
+      required: false
   - type: textarea
     id: logs
     attributes:
