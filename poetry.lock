@@ -409,7 +409,7 @@ typing-extensions = ">=3.7.4"
 
 [[package]]
 name = "sqlmodel"
-version = "0.0.4"
+version = "0.0.5"
 description = "SQLModel, SQL databases in Python, designed for simplicity, compatibility, and robustness."
 category = "main"
 optional = false
@@ -528,7 +528,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "cc947cdb6dfe516b6907d29d5d0b6d1909fe21449a9ca5e7a0370a193636e5a8"
+content-hash = "15e04e64f884d56996569535facbba35dc8e149bf029f8eea4e557f707439b9a"
 
 [metadata.files]
 async-generator = [
@@ -835,8 +835,8 @@ sqlalchemy2-stubs = [
     {file = "sqlalchemy2_stubs-0.0.2a18-py3-none-any.whl", hash = "sha256:75ec8ce53db5a85884adcb9f249751bc3aefb4c24fd2b5bd62860113eea4b37a"},
 ]
 sqlmodel = [
-    {file = "sqlmodel-0.0.4-py3-none-any.whl", hash = "sha256:441224eea75ea3799661dad0f9599bbd70322ce7d083f30f6741ebc807bc3ee6"},
-    {file = "sqlmodel-0.0.4.tar.gz", hash = "sha256:9503befd4374a8e84e9432b344dc9488e9ca2cc4bd1c944ab6837c1bae0b9837"},
+    {file = "sqlmodel-0.0.5-py3-none-any.whl", hash = "sha256:bcf083c53b2a94d044ae09d62322401bde5d5b669e8173a0e2a43932b03d99d6"},
+    {file = "sqlmodel-0.0.5.tar.gz", hash = "sha256:72c7ca0f0bbabcba9d03eb707b70761684f8f68e693ea58a89e4238f4d4faf0f"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
