@@ -5,15 +5,12 @@ from typing import Optional, Tuple
 from warnings import filterwarnings
 
 import undetected_chromedriver.v2 as uc
-from nest_asyncio import apply as nest_asyncio_apply
 from pydantic.networks import HttpUrl
 from selenium.common.exceptions import JavascriptException, NoSuchElementException
 from selenium.webdriver import Chrome, DesiredCapabilities
 
 from ecoindex.ecoindex import get_ecoindex
 from ecoindex.models import Page, PageMetrics, PageType, Result, WindowSize
-
-nest_asyncio_apply()
 
 
 async def get_page_analysis(

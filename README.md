@@ -11,7 +11,7 @@ This basic module provides a simple interface to get the [Ecoindex](http://www.e
 
 ## Requirements
 
-- Python ^3.8 with [pip](https://pip.pypa.io/en/stable/installation/)
+- Python ^3.10 with [pip](https://pip.pypa.io/en/stable/installation/)
 - Google Chrome installed on your computer
 
 ## Install
