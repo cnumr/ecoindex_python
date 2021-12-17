@@ -15,7 +15,7 @@ include = [
 python = "^3.8"
 selenium = ">=3.141,<5.0"
 sqlmodel = ">=0.0.4,<0.0.6"
-undetected-chromedriver = "3.0.3"
+undetected-chromedriver = "3.0.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

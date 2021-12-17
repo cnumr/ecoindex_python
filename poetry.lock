@@ -479,7 +479,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "undetected-chromedriver"
-version = "3.0.3"
+version = "3.0.6"
 description = "selenium.webdriver.Chrome replacement wiht compatiblity for Brave, and other Chromium baed browsers.     not triggered by CloudFlare/Imperva/hCaptcha and such.          NOTE: results may vary due to many factors. No guarantees are given, except for ongoing efforts in understanding detection algorithms."
 category = "main"
 optional = false
@@ -487,7 +487,7 @@ python-versions = "*"
 
 [package.dependencies]
 requests = "*"
-selenium = "4.0.0b4"
+selenium = "*"
 websockets = "*"
 
 [[package]]
@@ -531,7 +531,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e29629358b07ccf994b68870f6e967f3ffe07e0981d8c0654c9db4b5e1ae956e"
+content-hash = "06dcd33f7b04fdfabdd38ec13d7a70fe67fe906d9b94dc6aa887b30ad2b3491d"
 
 [metadata.files]
 async-generator = [
@@ -861,8 +861,7 @@ typing-extensions = [
     {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
 ]
 undetected-chromedriver = [
-    {file = "undetected-chromedriver-3.0.3.tar.gz", hash = "sha256:bcc3880daa1d621d848ef1c99252ea7e14ed7f4555ea87a36ed30d9b4dc8e878"},
-    {file = "undetected_chromedriver-3.0.3-py3.9.egg", hash = "sha256:21ceeffc5c7cc1bdaa468082e7786c749203ab548c59fdec9828ec1a4e361c22"},
+    {file = "undetected-chromedriver-3.0.6.tar.gz", hash = "sha256:5a6908552f275f6b0e5f406582dd2fa3a874965b7b1d3924f3bce94a4a330b4c"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.7-py2.py3-none-any.whl", hash = "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"},
