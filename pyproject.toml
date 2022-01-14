@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ecoindex"
-version = "v2.8.0"
+version = "v2.9.0"
 description = "Ecoindex module provides a simple way to measure the Ecoindex score based on the 3 parameters: The DOM elements of the page, the size of the page and the number of external requests of the page"
 authors = ["Vincent Vatelot <vincent.vatelot@gmail.com>"]
 license = "MIT"
@@ -13,7 +13,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-selenium = ">=3.141,<5.0"
+selenium = {version = "4.0.0b4", allow-prereleases = true}
 sqlmodel = ">=0.0.4,<0.0.7"
 undetected-chromedriver = "3.0.3"
 
