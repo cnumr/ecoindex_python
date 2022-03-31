@@ -6,7 +6,8 @@ from warnings import filterwarnings
 
 import undetected_chromedriver.v2 as uc
 from pydantic.networks import HttpUrl
-from selenium.common.exceptions import JavascriptException, NoSuchElementException
+from selenium.common.exceptions import (JavascriptException,
+                                        NoSuchElementException)
 from selenium.webdriver import Chrome, DesiredCapabilities
 
 from ecoindex.ecoindex import get_ecoindex
@@ -55,6 +56,8 @@ async def scrap_page(
     chrome_options.headless = True
     chrome_options.add_argument("--headless")
     chrome_options.add_argument(f"--window-size={window_size}")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
     capbs = DesiredCapabilities.CHROME.copy()
     capbs["goog:loggingPrefs"] = {"performance": "ALL"}
@@ -94,7 +97,7 @@ async def get_page_metrics(driver: Chrome) -> PageMetrics:
     ]
 
     return PageMetrics(
-        size=(sum(downloaded_data) + getsizeof(page.outer_html)) / (10**3),
+        size=(sum(downloaded_data) + getsizeof(page.outer_html)) / (10 ** 3),
         nodes=len(page.nodes),
         requests=len(downloaded_data),
     )
