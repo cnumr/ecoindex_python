@@ -6,8 +6,7 @@ from warnings import filterwarnings
 
 import undetected_chromedriver.v2 as uc
 from pydantic.networks import HttpUrl
-from selenium.common.exceptions import (JavascriptException,
-                                        NoSuchElementException)
+from selenium.common.exceptions import JavascriptException, NoSuchElementException
 from selenium.webdriver import Chrome, DesiredCapabilities
 
 from ecoindex.ecoindex import get_ecoindex
@@ -97,7 +96,7 @@ async def get_page_metrics(driver: Chrome) -> PageMetrics:
     ]
 
     return PageMetrics(
-        size=(sum(downloaded_data) + getsizeof(page.outer_html)) / (10 ** 3),
+        size=(sum(downloaded_data) + getsizeof(page.outer_html)) / (10**3),
         nodes=len(page.nodes),
         requests=len(downloaded_data),
     )
