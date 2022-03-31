@@ -55,6 +55,8 @@ async def scrap_page(
     chrome_options.headless = True
     chrome_options.add_argument("--headless")
     chrome_options.add_argument(f"--window-size={window_size}")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
     capbs = DesiredCapabilities.CHROME.copy()
     capbs["goog:loggingPrefs"] = {"performance": "ALL"}
