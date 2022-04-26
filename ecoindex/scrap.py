@@ -4,7 +4,7 @@ from sys import getsizeof
 from typing import Optional, Tuple
 from warnings import filterwarnings
 
-import undetected_chromedriver.v2 as uc
+import undetected_chromedriver as uc
 from pydantic.networks import HttpUrl
 from selenium.common.exceptions import JavascriptException, NoSuchElementException
 from selenium.webdriver import Chrome, DesiredCapabilities
