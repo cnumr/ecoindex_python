@@ -1,6 +1,7 @@
 from datetime import datetime
 from json import loads
 from sys import getsizeof
+from time import sleep
 from typing import Optional, Tuple
 from warnings import filterwarnings
 
@@ -53,7 +54,6 @@ async def scrap_page(
 ) -> Tuple[PageMetrics, PageType]:
     chrome_options = uc.ChromeOptions()
     chrome_options.headless = True
-    chrome_options.add_argument("--headless")
     chrome_options.add_argument(f"--window-size={window_size}")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -65,7 +65,9 @@ async def scrap_page(
 
     driver.set_script_timeout(10)
     driver.get(url)
-    driver.implicitly_wait(wait_before_scroll)
+
+    sleep(wait_before_scroll)
+
     try:
         driver.execute_script(
             "window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })"
@@ -73,7 +75,7 @@ async def scrap_page(
     except JavascriptException:
         pass
 
-    driver.implicitly_wait(wait_after_scroll)
+    sleep(wait_after_scroll)
 
     page_type = await get_page_type(driver)
     page_metrics = await get_page_metrics(driver)
