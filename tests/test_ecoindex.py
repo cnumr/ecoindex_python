@@ -39,26 +39,23 @@ class TestAsyncGroup:
             water=2.49,
         )
 
+    async def test_get_grade(self):
+        assert await get_grade(2) == "G"
+        assert await get_grade(10) == "F"
+        assert await get_grade(25) == "E"
+        assert await get_grade(10) == "F"
+        assert await get_grade(50.2) == "C"
+        assert await get_grade(10) == "F"
+        assert await get_grade(100) == "A"
 
-def test_get_grade():
-    assert get_grade(2) == "G"
-    assert get_grade(10) == "F"
-    assert get_grade(25) == "E"
-    assert get_grade(10) == "F"
-    assert get_grade(50.2) == "C"
-    assert get_grade(10) == "F"
-    assert get_grade(100) == "A"
+    async def test_get_greenhouse_gases_emission(self):
+        assert await get_greenhouse_gases_emmission(2) == 2.96
+        assert await get_greenhouse_gases_emmission(10) == 2.8
+        assert await get_greenhouse_gases_emmission(50) == 2
+        assert await get_greenhouse_gases_emmission(70) == 1.6
 
-
-def test_get_greenhouse_gases_emission():
-    assert get_greenhouse_gases_emmission(2) == 2.96
-    assert get_greenhouse_gases_emmission(10) == 2.8
-    assert get_greenhouse_gases_emmission(50) == 2
-    assert get_greenhouse_gases_emmission(70) == 1.6
-
-
-def test_get_water_consumption():
-    assert get_water_consumption(2) == 4.44
-    assert get_water_consumption(10) == 4.2
-    assert get_water_consumption(50) == 3
-    assert get_water_consumption(70) == 2.4
+    async def test_get_water_consumption(self):
+        assert await get_water_consumption(2) == 4.44
+        assert await get_water_consumption(10) == 4.2
+        assert await get_water_consumption(50) == 3
+        assert await get_water_consumption(70) == 2.4
