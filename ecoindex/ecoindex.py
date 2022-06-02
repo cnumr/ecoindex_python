@@ -27,13 +27,13 @@ async def get_ecoindex(dom: int, size: float, requests: int) -> Ecoindex:
 
     return Ecoindex(
         score=score,
-        grade=get_grade(score),
-        ges=get_greenhouse_gases_emmission(score),
-        water=get_water_consumption(score),
+        grade=await get_grade(score),
+        ges=await get_greenhouse_gases_emmission(score),
+        water=await get_water_consumption(score),
     )
 
 
-def get_grade(ecoindex: float) -> str:
+async def get_grade(ecoindex: float) -> str:
     if ecoindex > 75:
         return "A"
     if ecoindex > 65:
@@ -49,9 +49,9 @@ def get_grade(ecoindex: float) -> str:
     return "G"
 
 
-def get_greenhouse_gases_emmission(ecoindex: float) -> float:
+async def get_greenhouse_gases_emmission(ecoindex: float) -> float:
     return round(100 * (2 + 2 * (50 - ecoindex) / 100)) / 100
 
 
-def get_water_consumption(ecoindex: float) -> float:
+async def get_water_consumption(ecoindex: float) -> float:
     return round(100 * (3 + 3 * (50 - ecoindex) / 100)) / 100
