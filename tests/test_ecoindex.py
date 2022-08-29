@@ -15,37 +15,35 @@ from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 class TestAsyncGroup:
     async def test_get_quantiles(self):
         quantile_size = await get_quantile(quantiles_size, 2500)
-        assert quantile_size == 15.086372025739513
+        assert quantile_size == 14.086372025739513
 
         quantile_dom = await get_quantile(quantiles_dom, 150)
-        assert quantile_dom == 3.892857142857143
+        assert quantile_dom == 2.892857142857143
 
         quantile_req = await get_quantile(quantiles_req, 23)
-        assert quantile_req == 3.8
+        assert quantile_req == 2.8
 
     async def test_get_score(self):
-        assert await get_score(dom=100, requests=100, size=100) == 67
-        assert await get_score(dom=100, requests=100, size=1000) == 62
-        assert await get_score(dom=100, requests=100, size=10000) == 53
-        assert await get_score(dom=200, requests=200, size=10000) == 41
-        assert await get_score(dom=2355, requests=267, size=2493) == 5
-        assert await get_score(dom=240, requests=20, size=331) == 78
+        assert await get_score(dom=100, requests=100, size=100) == 72
+        assert await get_score(dom=100, requests=100, size=1000) == 67
+        assert await get_score(dom=100, requests=100, size=10000) == 58
+        assert await get_score(dom=200, requests=200, size=10000) == 46
+        assert await get_score(dom=2355, requests=267, size=2493) == 10
+        assert await get_score(dom=240, requests=20, size=331) == 83
 
     async def test_get_ecoindex(self):
         assert await get_ecoindex(dom=100, requests=100, size=100) == Ecoindex(
-            score=67,
+            score=72,
             grade="B",
-            ges=1.66,
-            water=2.49,
+            ges=1.56,
+            water=2.34,
         )
 
     async def test_get_grade(self):
         assert await get_grade(2) == "G"
-        assert await get_grade(10) == "F"
-        assert await get_grade(25) == "E"
-        assert await get_grade(10) == "F"
-        assert await get_grade(50.2) == "C"
-        assert await get_grade(10) == "F"
+        assert await get_grade(25) == "F"
+        assert await get_grade(10) == "G"
+        assert await get_grade(50.2) == "D"
         assert await get_grade(100) == "A"
 
     async def test_get_greenhouse_gases_emission(self):

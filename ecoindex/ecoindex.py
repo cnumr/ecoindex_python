@@ -9,9 +9,11 @@ async def get_quantile(
 ) -> float:
     for i in range(1, len(quantiles) + 1):
         if value < quantiles[i]:
-            return i + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1])
+            return (
+                i - 1 + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1])
+            )
 
-    return len(quantiles)
+    return len(quantiles) - 1
 
 
 async def get_score(dom: int, size: float, requests: int) -> float:
@@ -34,17 +36,17 @@ async def get_ecoindex(dom: int, size: float, requests: int) -> Ecoindex:
 
 
 async def get_grade(ecoindex: float) -> str:
-    if ecoindex > 75:
+    if ecoindex > 80:
         return "A"
-    if ecoindex > 65:
+    if ecoindex > 70:
         return "B"
-    if ecoindex > 50:
+    if ecoindex > 55:
         return "C"
-    if ecoindex > 35:
+    if ecoindex > 40:
         return "D"
-    if ecoindex > 20:
+    if ecoindex > 25:
         return "E"
-    if ecoindex > 5:
+    if ecoindex > 10:
         return "F"
     return "G"
 
