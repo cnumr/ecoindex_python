@@ -9,6 +9,7 @@ def test_model_valid():
     assert valid_ecoindex.score == 99.9
     assert valid_ecoindex.ges == 0.6
     assert valid_ecoindex.water == 0.1
+    assert valid_ecoindex.ecoindex_version not in [None, ""]
 
 
 def test_model_invalid():

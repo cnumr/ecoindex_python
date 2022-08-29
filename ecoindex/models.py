@@ -1,5 +1,6 @@
 from typing import Optional
 
+from pkg_resources import get_distribution
 from sqlmodel import Field, SQLModel
 
 PageType = str
@@ -29,4 +30,9 @@ class Ecoindex(SQLModel):
         title="Ecoindex Water equivalent",
         description="Is the equivalent water consumption (in `cl`) of the page",
         ge=0,
+    )
+    ecoindex_version: Optional[str] = Field(
+        default=get_distribution("ecoindex").version,
+        title="Ecoindex version",
+        description="Is the version of the ecoindex used to compute the score",
     )
