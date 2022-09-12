@@ -45,7 +45,7 @@ pprint(ecoindex)
 Result example:
 
 ```python
-Ecoindex(grade='B', score=67.0, ges=1.66, water=2.49, ecoindex_version='3.0.0')
+Ecoindex(grade='B', score=72.0, ges=1.56, water=2.34, ecoindex_version='3.0.0')
 ```
 
 ## Contribute
