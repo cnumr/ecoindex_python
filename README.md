@@ -37,7 +37,7 @@ from pprint import pprint
 
 from ecoindex import get_ecoindex
 
-Get ecoindex from DOM elements, size of page and requests of the page
+# Get ecoindex from DOM elements, size of page and requests of the page
 ecoindex = asyncio.run(get_ecoindex(dom=100, size=100, requests=100))
 pprint(ecoindex)
 ```
@@ -45,7 +45,7 @@ pprint(ecoindex)
 Result example:
 
 ```python
-Ecoindex(grade='B', score=67, ges=1.66, water=2.49)
+Ecoindex(grade='B', score=67.0, ges=1.66, water=2.49, ecoindex_version='3.0.0')
 ```
 
 ## Contribute
