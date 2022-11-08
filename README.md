@@ -62,6 +62,13 @@ poetry install
 poetry run pytest
 ```
 
+## Disclaimer
+
+The LCA values used by [ecoindex](https://github.com/cnumr/ecoindex_python) to evaluate environmental impacts are not under free license - ©Frédéric Bordage
+Please also refer to the mentions provided in the code files for specifics on the IP regime.
+
+## [License](LICENSE)
+
 ## [Contributing](CONTRIBUTING.md)
 
 ## [Code of conduct](CODE_OF_CONDUCT.md)
