@@ -182,7 +182,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 
 [[package]]
 name = "pytest-asyncio"
-version = "0.20.1"
+version = "0.20.2"
 description = "Pytest support for asyncio"
 category = "dev"
 optional = false
@@ -269,7 +269,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "daefd8f0c74298257a89c4b4f57056bcb047e5ca544878a6bfe80744fe1432a4"
+content-hash = "f7151b69721c94b1aecde2057e69f9d27f94410a323bbf2648348c298dedc323"
 
 [metadata.files]
 attrs = [
@@ -439,8 +439,8 @@ pytest = [
     {file = "pytest-7.2.0.tar.gz", hash = "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59"},
 ]
 pytest-asyncio = [
-    {file = "pytest-asyncio-0.20.1.tar.gz", hash = "sha256:626699de2a747611f3eeb64168b3575f70439b06c3d0206e6ceaeeb956e65519"},
-    {file = "pytest_asyncio-0.20.1-py3-none-any.whl", hash = "sha256:2c85a835df33fda40fe3973b451e0c194ca11bc2c007eabff90bb3d156fc172b"},
+    {file = "pytest-asyncio-0.20.2.tar.gz", hash = "sha256:32a87a9836298a881c0ec637ebcc952cfe23a56436bdc0d09d1511941dd8a812"},
+    {file = "pytest_asyncio-0.20.2-py3-none-any.whl", hash = "sha256:07e0abf9e6e6b95894a39f688a4a875d63c2128f76c02d03d16ccbc35bcc0f8a"},
 ]
 sqlalchemy = [
     {file = "SQLAlchemy-1.4.41-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:13e397a9371ecd25573a7b90bd037db604331cf403f5318038c46ee44908c44d"},
