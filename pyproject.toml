@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ecoindex"
-version = "v5.1.0"
+version = "v5.2.0b1"
 description = "Ecoindex module provides a simple way to measure the Ecoindex score based on the 3 parameters: The DOM elements of the page, the size of the page and the number of external requests of the page"
 authors = ["Vincent Vatelot <vincent.vatelot@ik.me>"]
 license = "MIT"
@@ -13,12 +13,12 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-sqlmodel = ">=0.0.4,<0.0.8"
+pydantic = "^1.10.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2"
 black = "^22.10"
-pytest-asyncio = "^0.20.1"
+pytest-asyncio = "^0.20.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
