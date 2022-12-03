@@ -4,7 +4,48 @@ from os.path import isdir
 from pydantic import ValidationError
 from pytest import raises
 
-from ecoindex.models import Ecoindex, Result, ScreenShot
+from ecoindex.models import Ecoindex, Result, ScreenShot, WebPage
+
+
+def test_model_webpage_no_url():
+    with raises(ValidationError) as error:
+        WebPage()
+
+    assert (
+        "1 validation error for WebPage\n"
+        "url\n"
+        "  field required (type=value_error.missing)"
+    ) in str(error.value)
+
+
+def test_model_webpage_invalid_url():
+    with raises(ValidationError) as error:
+        WebPage(url="toto")
+
+    assert (
+        "1 validation error for WebPage\n"
+        "url\n"
+        "  invalid or missing URL scheme (type=value_error.url.scheme)"
+    ) in str(error.value)
+
+
+def test_model_webpage_wrong_size():
+    with raises(ValidationError) as error:
+        WebPage(url="https://www.google.fr", width=0, height=0)
+
+    assert (
+        "2 validation errors for WebPage\n"
+        "width\n"
+        "  ensure this value is greater than or equal to 100 (type=value_error.number.not_ge; limit_value=100)\n"
+        "height\n"
+        "  ensure this value is greater than or equal to 50 (type=value_error.number.not_ge; limit_value=50)"
+    ) in str(error.value)
+
+
+def test_model_webpage_default_size():
+    webpage = WebPage(url="https://www.google.fr")
+    assert webpage.height == 1080
+    assert webpage.width == 1920
 
 
 def test_model_valid():
@@ -21,9 +62,8 @@ def test_model_invalid():
         Ecoindex(grade="dummy", score="dummy")
 
     assert (
-        "1 validation error for Ecoindex\nscore\n  value is not a valid float"
-        in str(error.value)
-    )
+        "1 validation error for Ecoindex\n" "score\n" "  value is not a valid float"
+    ) in str(error.value)
 
     assert "value is not a valid float (type=type_error.float)" in str(error.value)
 
