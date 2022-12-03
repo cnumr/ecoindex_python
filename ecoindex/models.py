@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Any
 
 from pkg_resources import get_distribution
-from pydantic import BaseModel, Field
+from pydantic import AnyHttpUrl, BaseModel, Field
 from pydantic.networks import HttpUrl
 
 PageType = str
@@ -64,17 +64,21 @@ class PageMetrics(BaseModel):
 
 class WebPage(BaseModel):
     width: int | None = Field(
-        default=None,
+        default=1920,
         title="Page Width",
         description="Width of the simulated window in pixel",
+        ge=100,
+        lt=3840,
     )
     height: int | None = Field(
-        default=None,
+        default=1080,
         title="Page Height",
         description="Height of the simulated window in pixel",
+        ge=50,
+        lt=2160,
     )
-    url: HttpUrl | None = Field(
-        default=None, title="Page url", description="Url of the analysed page"
+    url: AnyHttpUrl = Field(
+        default=..., title="Page url", description="Url of the analysed page"
     )
 
 
