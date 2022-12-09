@@ -68,14 +68,14 @@ class WebPage(BaseModel):
         title="Page Width",
         description="Width of the simulated window in pixel",
         ge=100,
-        lt=3840,
+        le=3840,
     )
     height: int | None = Field(
         default=1080,
         title="Page Height",
         description="Height of the simulated window in pixel",
         ge=50,
-        lt=2160,
+        le=2160,
     )
     url: AnyHttpUrl = Field(
         default=..., title="Page url", description="Url of the analysed page"
