@@ -17,7 +17,7 @@ pydantic = "^1.10.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2"
-black = "^22.10"
+black = "^22.12"
 pytest-asyncio = "^0.20.3"
 
 [build-system]
