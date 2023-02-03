@@ -1,5 +1,6 @@
 import pytest
 
+from ecoindex.data.quantiles import quantiles_dom, quantiles_req, quantiles_size
 from ecoindex.ecoindex import (
     get_ecoindex,
     get_grade,
@@ -9,7 +10,6 @@ from ecoindex.ecoindex import (
     get_water_consumption,
 )
 from ecoindex.models import Ecoindex
-from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 
 
 @pytest.mark.asyncio
