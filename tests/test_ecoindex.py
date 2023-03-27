@@ -1,4 +1,5 @@
 import pytest
+
 from ecoindex.ecoindex import (
     get_ecoindex,
     get_grade,
@@ -14,14 +15,10 @@ from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 @pytest.mark.asyncio
 class TestAsyncGroup:
     async def test_get_quantiles(self):
-        quantile_size = await get_quantile(quantiles_size, 2500)
-        assert quantile_size == 14.086372025739513
-
-        quantile_dom = await get_quantile(quantiles_dom, 150)
-        assert quantile_dom == 2.892857142857143
-
-        quantile_req = await get_quantile(quantiles_req, 23)
-        assert quantile_req == 2.8
+        assert await get_quantile(quantiles_size, 2500) == 14.086372025739513
+        assert await get_quantile(quantiles_dom, 150) == 2.892857142857143
+        assert await get_quantile(quantiles_req, 23) == 2.8
+        assert await get_quantile(quantiles_size, 310182.902) == 20
 
     async def test_get_score(self):
         assert await get_score(dom=100, requests=100, size=100) == 72
@@ -57,3 +54,11 @@ class TestAsyncGroup:
         assert await get_water_consumption(10) == 4.2
         assert await get_water_consumption(50) == 3
         assert await get_water_consumption(70) == 2.4
+
+    async def test_get_ecoindex_out_of_range(self):
+        assert await get_ecoindex(dom=2240, requests=100, size=310182.902) == Ecoindex(
+            score=16,
+            grade="F",
+            ges=2.68,
+            water=4.02,
+        )

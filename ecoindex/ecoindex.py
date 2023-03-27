@@ -7,7 +7,7 @@ from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 async def get_quantile(
     quantiles: List[Union[int, float]], value: Union[int, float]
 ) -> float:
-    for i in range(1, len(quantiles) + 1):
+    for i in range(1, len(quantiles)):
         if value < quantiles[i]:
             return (
                 i - 1 + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1])
