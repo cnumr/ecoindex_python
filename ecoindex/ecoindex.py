@@ -1,12 +1,11 @@
-from typing import List, Union
+from typing import List
 
+from ecoindex.data.grades import A, B, C, D, E, F, G
+from ecoindex.data.quantiles import quantiles_dom, quantiles_req, quantiles_size
 from ecoindex.models import Ecoindex
-from ecoindex.quantiles import quantiles_dom, quantiles_req, quantiles_size
 
 
-async def get_quantile(
-    quantiles: List[Union[int, float]], value: Union[int, float]
-) -> float:
+async def get_quantile(quantiles: List[int | float], value: int | float) -> float:
     for i in range(1, len(quantiles)):
         if value < quantiles[i]:
             return (
@@ -36,18 +35,10 @@ async def get_ecoindex(dom: int, size: float, requests: int) -> Ecoindex:
 
 
 async def get_grade(ecoindex: float) -> str:
-    if ecoindex > 80:
-        return "A"
-    if ecoindex > 70:
-        return "B"
-    if ecoindex > 55:
-        return "C"
-    if ecoindex > 40:
-        return "D"
-    if ecoindex > 25:
-        return "E"
-    if ecoindex > 10:
-        return "F"
+    for grade in "ABCDEF":
+        if ecoindex > globals()[grade]:
+            return grade
+
     return "G"
 
 

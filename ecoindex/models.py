@@ -4,7 +4,6 @@ from typing import Any
 
 from pkg_resources import get_distribution
 from pydantic import AnyHttpUrl, BaseModel, Field
-from pydantic.networks import HttpUrl
 
 PageType = str
 
