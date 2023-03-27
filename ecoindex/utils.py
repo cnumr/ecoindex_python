@@ -8,7 +8,7 @@ from requests import get
 
 async def update_values_async() -> None:
     response = get(
-        "https://raw.githubusercontent.com/cnumr/ecoindex_reference/1.0.x-dev/ecoindex_reference.json",
+        "https://cdn.jsdelivr.net/gh/cnumr/ecoindex_reference@1/ecoindex_reference.json",
     )
 
     data = response.json()
