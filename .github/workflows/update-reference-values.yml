@@ -26,8 +26,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: "⬆️ chore(values): Update reference values"
-          branch: "doc/openapi-spec"
-          path: "docs/"
+          branch: "chore/ecoindex-reference-values"
+          path: "ecoindex/data/"
           commit-message: "⬆️ chore(values): Update reference values"
           auto-merge: squash
           body: "Update reference values from repository [cnumr/ecoindex_reference](https://www.github.com/cnumr/ecoindex_reference)"
