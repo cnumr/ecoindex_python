@@ -19,7 +19,7 @@ aiofile = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2"
-black = "^23.1"
+black = "^23.3"
 pytest-asyncio = "^0.21.0"
 
 [build-system]
