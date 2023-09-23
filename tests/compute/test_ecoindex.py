@@ -1,7 +1,6 @@
 import pytest
 
-from ecoindex.data.quantiles import quantiles_dom, quantiles_req, quantiles_size
-from ecoindex.ecoindex import (
+from ecoindex.compute import (
     get_ecoindex,
     get_grade,
     get_greenhouse_gases_emmission,
@@ -9,6 +8,7 @@ from ecoindex.ecoindex import (
     get_score,
     get_water_consumption,
 )
+from ecoindex.data import quantiles_dom, quantiles_req, quantiles_size
 from ecoindex.models import Ecoindex
 
 

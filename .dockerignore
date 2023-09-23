@@ -1,0 +1,8 @@
+*
+__pycache__
+!ecoindex_scraper
+!tests
+!pyproject.toml
+!poetry.lock
+!README.md
+!scripts/download_chrome.py

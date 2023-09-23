@@ -70,10 +70,10 @@ def test_model_invalid():
 
 def test_ecoindex_model_empty():
     ecoindex = Ecoindex()
-    assert ecoindex.ges == None
-    assert ecoindex.grade == None
-    assert ecoindex.score == None
-    assert ecoindex.water == None
+    assert ecoindex.ges is None
+    assert ecoindex.grade is None
+    assert ecoindex.score is None
+    assert ecoindex.water is None
 
 
 def test_result_model():
@@ -108,11 +108,11 @@ def test_screenshot_model():
 
     screenshot = ScreenShot(id=id, folder=folder)
 
-    assert isdir(folder) == True
+    assert isdir(folder) is True
     assert screenshot.id == id
     assert screenshot.folder == folder
     assert screenshot.get_png() == f"{folder}/{id}.png"
     assert screenshot.get_webp() == f"{folder}/{id}.webp"
 
     rmdir(folder)
-    assert isdir(folder) == False
+    assert isdir(folder) is False
