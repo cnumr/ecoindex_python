@@ -2,7 +2,7 @@ import os
 
 from PIL import Image
 
-from ecoindex.compute.models import ScreenShot
+from ecoindex.models import ScreenShot
 
 
 def convert_screenshot_to_webp(screenshot: ScreenShot) -> None:

@@ -1,7 +1,17 @@
 from typing import List
 
-from ecoindex.compute.data import quantiles_dom, quantiles_req, quantiles_size
-from ecoindex.data import A, B, C, D, E, F, G  # noqa: F401
+from ecoindex.data import (  # noqa: F401
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    quantiles_dom,
+    quantiles_req,
+    quantiles_size,
+)
 from ecoindex.models import Ecoindex
 
 

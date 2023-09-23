@@ -2,7 +2,7 @@ import asyncio
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from ecoindex_scraper.scrap import EcoindexScraper
+from ecoindex.scraper import EcoindexScraper
 
 
 def run_page_analysis(url):
