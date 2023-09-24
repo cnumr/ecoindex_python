@@ -13,8 +13,8 @@ def test_model_webpage_no_url():
 
     assert (
         "1 validation error for WebPage\n"
-        "url\n"
-        "  field required (type=value_error.missing)"
+        "url\n  "
+        "Field required [type=missing, input_value={}, input_type=dict]\n"
     ) in str(error.value)
 
 
@@ -24,21 +24,27 @@ def test_model_webpage_invalid_url():
 
     assert (
         "1 validation error for WebPage\n"
-        "url\n"
-        "  invalid or missing URL scheme (type=value_error.url.scheme)"
+        "url\n  "
+        "Input should be a valid URL, relative URL without a base "
+        "[type=url_parsing, input_value='toto', input_type=str]\n"
     ) in str(error.value)
 
 
 def test_model_webpage_wrong_size():
     with raises(ValidationError) as error:
         WebPage(url="https://www.google.fr", width=0, height=0)
+        print(error.value)
 
     assert (
         "2 validation errors for WebPage\n"
-        "width\n"
-        "  ensure this value is greater than or equal to 100 (type=value_error.number.not_ge; limit_value=100)\n"
-        "height\n"
-        "  ensure this value is greater than or equal to 50 (type=value_error.number.not_ge; limit_value=50)"
+        "width\n  "
+        "Input should be greater than or equal to 100 [type=greater_than_equal, "
+        "input_value=0, input_type=int]\n    "
+        "For further information visit https://errors.pydantic.dev/2.3/v/greater_than_equal\n"
+        "height\n  "
+        "Input should be greater than or equal to 50 [type=greater_than_equal, "
+        "input_value=0, input_type=int]\n    "
+        "For further information visit https://errors.pydantic.dev/2.3/v/greater_than_equal"
     ) in str(error.value)
 
 
@@ -62,10 +68,9 @@ def test_model_invalid():
         Ecoindex(grade="dummy", score="dummy")
 
     assert (
-        "1 validation error for Ecoindex\n" "score\n" "  value is not a valid float"
+        "1 validation error for Ecoindex\nscore\n  "
+        "Input should be a valid number, unable to parse string as a number"
     ) in str(error.value)
-
-    assert "value is not a valid float (type=type_error.float)" in str(error.value)
 
 
 def test_ecoindex_model_empty():
@@ -116,3 +121,15 @@ def test_screenshot_model():
 
     rmdir(folder)
     assert isdir(folder) is False
+
+
+if __name__ == "__main__":
+    test_model_webpage_no_url()
+    test_model_webpage_invalid_url()
+    test_model_webpage_wrong_size()
+    test_model_webpage_default_size()
+    test_model_valid()
+    test_model_invalid()
+    test_ecoindex_model_empty()
+    test_result_model()
+    test_screenshot_model()

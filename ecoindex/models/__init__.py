@@ -1,4 +1,4 @@
-from ecoindex.compute.models import (  # noqa: F401
+from .compute import (  # noqa: F401
     Ecoindex,
     PageMetrics,
     PageType,

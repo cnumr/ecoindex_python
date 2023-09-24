@@ -24,7 +24,9 @@ class Ecoindex(BaseModel):
     ges: float | None = Field(
         default=None,
         title="Ecoindex GES equivalent",
-        description="Is the equivalent of greenhouse gases emission (in `gCO2e`) of the page",
+        description=(
+            "Is the equivalent of greenhouse gases emission" " (in `gCO2e`) of the page"
+        ),
         ge=0,
     )
     water: float | None = Field(
@@ -44,7 +46,10 @@ class PageMetrics(BaseModel):
     size: float = Field(
         default=...,
         title="Page size",
-        description="Is the size of the page and of the downloaded elements of the page in KB",
+        description=(
+            "Is the size of the page and of the downloaded"
+            " elements of the page in KB"
+        ),
         ge=0,
     )
     nodes: int = Field(
