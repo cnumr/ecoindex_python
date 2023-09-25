@@ -28,6 +28,20 @@ black = "^23.3"
 pytest-asyncio = "^0.21.0"
 tqdm = "^4.66.1"
 bump-pydantic = "^0.7.0"
+faker = "^19.6.2"
+faker-enum = "^0.0.2"
+
+
+[tool.poetry.group.api.dependencies]
+fastapi = "^0.103.1"
+fastapi-health = "^0.4.0"
+uvicorn = "^0.23.2"
+gunicorn = "^21.2.0"
+pydantic-settings = "^2.0.3"
+
+
+[tool.poetry.group.api-worker.dependencies]
+prisma = "^0.10.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
