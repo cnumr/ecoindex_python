@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi_health import health
 
-from ecoindex.api.database.engine import is_database_online
+from ecoindex.backend.database.engine import is_database_online
 from ecoindex.models import ApiHealth
 
 

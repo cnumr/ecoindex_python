@@ -130,3 +130,9 @@ class ScreenShot(BaseModel):
 
     def get_webp(self) -> str:
         return f"{self.__str__()}.webp"
+
+
+class Requests(BaseModel):
+    url: str
+    type: str
+    size: float

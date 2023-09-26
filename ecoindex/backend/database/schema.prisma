@@ -10,8 +10,8 @@ generator db {
 }
 
 model Ecoindex {
-    id                    String   @id @default(cuid())
-    date                  DateTime @default(now())
+    id                    String    @id @default(cuid())
+    date                  DateTime  @default(now())
     url                   String
     host                  String
     width                 Int
@@ -28,7 +28,19 @@ model Ecoindex {
     initial_total_results Int
     version               Int
     ecoindex_version      String
+    requests_details      Request[]
 
     @@index([url, host, date(sort: Desc)])
     @@map("api_ecoindex")
+}
+
+model Request {
+    id          String    @id @default(cuid())
+    url         String
+    type        String
+    size        Float
+    ecoindex    Ecoindex? @relation(fields: [ecoindex_id], references: [id])
+    ecoindex_id String?
+
+    @@map("requests_details")
 }

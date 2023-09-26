@@ -1,19 +1,23 @@
-from datetime import date, datetime
+from datetime import datetime
 from os import getcwd
-from typing import Annotated
-from uuid import UUID
+from typing import Annotated, List
 
-from fastapi import APIRouter, HTTPException, Path, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import FileResponse
 
-from ecoindex.api.database.engine import prisma
-from ecoindex.api.utils.sorting import get_sort_parameters
+from ecoindex.backend.api.dependencies.ecoindex import (
+    CommonEcoindexDetailParams,
+    CommonEcoindexListParams,
+)
+from ecoindex.backend.api.dependencies.pagination import PaginationParams
+from ecoindex.backend.api.utils.sorting import get_sort_parameters
+from ecoindex.backend.database.engine import prisma
 from ecoindex.compute.ecoindex import get_ecoindex
 from ecoindex.models import (
     ApiEcoindex,
     Ecoindex,
     PageApiEcoindexes,
-    Version,
+    Requests,
     example_ecoindex_not_found,
     example_file_not_found,
 )
@@ -22,7 +26,6 @@ router = APIRouter(prefix="/ecoindex", tags=["Ecoindex"])
 
 
 @router.get(
-    name="Compute ecoindex",
     path="/",
     description=(
         "This returns the ecoindex computed based on the given parameters: "
@@ -56,7 +59,6 @@ async def compute_ecoindex(
 
 
 @router.get(
-    name="Get ecoindex analysis list",
     path="/{version}/ecoindexes",
     response_model=PageApiEcoindexes,
     response_description="List of corresponding ecoindex results",
@@ -64,7 +66,6 @@ async def compute_ecoindex(
         status.HTTP_206_PARTIAL_CONTENT: {"model": PageApiEcoindexes},
         status.HTTP_404_NOT_FOUND: {"model": PageApiEcoindexes},
     },
-    tags=["Ecoindex"],
     description=(
         "This returns a list of ecoindex analysis "
         "corresponding to query filters and the given version engine. "
@@ -72,54 +73,25 @@ async def compute_ecoindex(
     ),
 )
 async def get_ecoindex_analysis_list(
-    version: Version = Path(
-        default=...,
-        title="Engine version",
-        description="Engine version used to run the analysis (v0 or v1)",
-        example=Version.v1.value,
-    ),
-    date_from: Annotated[
-        date | None,
-        Query(description="Start date of the filter elements (example: 2020-01-01)"),
-    ] = None,
-    date_to: Annotated[
-        date | None,
-        Query(description="End date of the filter elements  (example: 2020-01-01)"),
-    ] = None,
-    host: Annotated[
-        str | None, Query(description="Host name you want to filter")
-    ] = None,
-    page: Annotated[int, Query(description="Page number", ge=1)] = 1,
-    size: Annotated[
-        int, Query(description="Number of elements per page", ge=1, le=100)
-    ] = 50,
-    sort: Annotated[
-        list[str],
-        Query(
-            description=(
-                "You can sort results using this param with the format "
-                "`sort=param1:asc&sort=param2:desc`"
-            )
-        ),
-    ] = ["date:desc"],
+    params: CommonEcoindexListParams = Depends(CommonEcoindexListParams),
+    pagination: PaginationParams = Depends(PaginationParams),
 ) -> PageApiEcoindexes:
-    where = {"version": version.get_version_number(), "date": {}}
-    if date_from:
-        where["date"]["gte"] = datetime.combine(date_from, datetime.min.time())
-    if date_to:
-        where["date"]["lte"] = datetime.combine(date_to, datetime.min.time())
-    if host:
-        where["host"] = {"contains": host}
-
-    print(where)
+    # TODO: Refactor this to use a repository
+    where = {"version": params.version.get_version_number(), "date": {}}
+    if params.date_from:
+        where["date"]["gte"] = datetime.combine(params.date_from, datetime.min.time())
+    if params.date_to:
+        where["date"]["lte"] = datetime.combine(params.date_to, datetime.min.time())
+    if params.host:
+        where["host"] = {"contains": params.host}
 
     ecoindexes = await prisma.ecoindex.find_many(
-        skip=(page - 1) * size,
-        take=size,
+        skip=(pagination.page - 1) * pagination.size,
+        take=pagination.size,
         where=where,
         order=[
             {param.clause: param.sort}
-            for param in await get_sort_parameters(sort, ApiEcoindex)
+            for param in await get_sort_parameters(pagination.sort, ApiEcoindex)
         ],
     )
 
@@ -128,13 +100,12 @@ async def get_ecoindex_analysis_list(
     return PageApiEcoindexes(
         items=[ApiEcoindex(**ecoindex.model_dump()) for ecoindex in ecoindexes],
         total=total,
-        page=page,
-        size=size,
+        page=pagination.page,
+        size=pagination.size,
     )
 
 
 @router.get(
-    name="Get ecoindex analysis by id",
     path="/{version}/ecoindexes/{id}",
     response_model=ApiEcoindex,
     response_description="Get one ecoindex result by its id",
@@ -142,49 +113,63 @@ async def get_ecoindex_analysis_list(
     description="This returns an ecoindex given by its unique identifier",
 )
 async def get_ecoindex_analysis_by_id(
-    version: Version = Path(
-        default=...,
-        title="Engine version",
-        description="Engine version used to run the analysis (v0 or v1)",
-        example=Version.v1.value,
-    ),
-    id: UUID = Path(
-        default=..., description="Unique identifier of the ecoindex analysis"
-    ),
+    params: CommonEcoindexDetailParams = Depends(CommonEcoindexDetailParams),
 ) -> ApiEcoindex:
     ecoindex = await prisma.ecoindex.find_first(
-        where={"id": str(id), "version": version.get_version_number()}
+        where={
+            "id": str(params.id),
+            "version": params.version.get_version_number(),
+        }
     )
 
     if not ecoindex:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Analysis {id} not found for version {version.value}",
+            detail=f"Analysis {params.id} not found for version {params.version.value}",
         )
 
     return ecoindex
 
 
 @router.get(
-    name="Get screenshot",
     path="/{version}/ecoindexes/{id}/screenshot",
     description="This returns the screenshot of the webpage analysis if it exists",
     responses={status.HTTP_404_NOT_FOUND: example_file_not_found},
 )
-async def get_screenshot(
-    version: Version = Path(
-        default=...,
-        title="Engine version",
-        description="Engine version used to run the analysis (v0 or v1)",
-        example=Version.v1.value,
-    ),
-    id: UUID = Path(
-        default=..., description="Unique identifier of the ecoindex analysis"
-    ),
-):
+async def get_ecoindex_screenshot(
+    params: CommonEcoindexDetailParams = Depends(CommonEcoindexDetailParams),
+) -> FileResponse:
     return FileResponse(
-        path=f"{getcwd()}/ecoindex/api/screenshots/{version.value}/{id}.webp",
-        filename=f"{id}.webp",
+        path=f"{getcwd()}/ecoindex/api/screenshots/{params.version.value}/{params.id}.webp",
+        filename=f"{params.id}.webp",
         content_disposition_type="inline",
         media_type="image/webp",
     )
+
+
+@router.get(
+    path="/{version}/ecoindexes/{id}/requests",
+    description="This returns the requests details of the webpage analysis",
+    responses={status.HTTP_404_NOT_FOUND: example_ecoindex_not_found},
+)
+async def get_ecoindex_requests_details(
+    params: CommonEcoindexDetailParams = Depends(CommonEcoindexDetailParams),
+) -> List[Requests]:
+    ecoindex = await prisma.ecoindex.find_first(
+        where={
+            "id": str(params.id),
+            "version": params.version.get_version_number(),
+        },
+        include={"requests_details": True},
+    )
+
+    if not ecoindex:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Analysis {params.id} not found for version {params.version.value}",
+        )
+
+    return [
+        Requests(url=request.url, size=request.size, type=request.type)
+        for request in ecoindex.requests_details
+    ]

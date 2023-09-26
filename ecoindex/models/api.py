@@ -50,3 +50,19 @@ class PageApiEcoindexes(BaseModel):
 
 class ApiHealth(BaseModel):
     database: bool = Field(default=..., title="Status of database")
+
+
+class BaseHost(BaseModel):
+    name: str
+    total_count: int
+
+
+class Host(BaseHost):
+    remaining_daily_requests: int | None
+
+
+class PageHosts(BaseModel):
+    items: List[str]
+    total: int
+    page: int
+    size: int

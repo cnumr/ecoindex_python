@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
-from ecoindex.api.config import get_settings
-from ecoindex.api.database.engine import prisma
-from ecoindex.api.middleware import apply_exception_handlers
-from ecoindex.api.middleware.health import add_healthcheck_route
-from ecoindex.api.routes import router
+from ecoindex.backend.api.middleware import apply_exception_handlers
+from ecoindex.backend.api.middleware.health import add_healthcheck_route
+from ecoindex.backend.api.routes import router
+from ecoindex.backend.config import get_settings
+from ecoindex.backend.database.engine import prisma
 
 settings = get_settings()
 
