@@ -132,7 +132,7 @@ class ScreenShot(BaseModel):
         return f"{self.__str__()}.webp"
 
 
-class Requests(BaseModel):
+class Request(BaseModel):
     url: str
     type: str
     size: float

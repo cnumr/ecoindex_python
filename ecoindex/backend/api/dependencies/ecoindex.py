@@ -1,5 +1,4 @@
-from datetime import date
-from typing import Annotated
+from typing import Annotated, Dict
 from uuid import UUID
 
 from fastapi import Path, Query
@@ -27,31 +26,44 @@ class CommonEcoindexDetailParams:
         self.version = version
         self.id = id
 
+    def get_where_clause(self) -> Dict:
+        return {
+            "version": self.version.get_version_number(),
+            "id": str(self.id),
+        }
 
-class CommonEcoindexListParams:
+
+class EcoindexComputeParams:
     def __init__(
         self,
-        version: Version = Path(
-            default=...,
-            title="Engine version",
-            description="Engine version used to run the analysis (v0 or v1)",
-            example=Version.v1.value,
-        ),
-        date_from: Annotated[
-            date | None,
+        dom: Annotated[
+            int,
             Query(
-                description="Start date of the filter elements (example: 2020-01-01)"
+                default=...,
+                description="Number of DOM nodes of the page",
+                gt=0,
+                example=204,
             ),
-        ] = None,
-        date_to: Annotated[
-            date | None,
-            Query(description="End date of the filter elements  (example: 2020-01-01)"),
-        ] = None,
-        host: Annotated[
-            str | None, Query(description="Host name you want to filter")
-        ] = None,
-    ):
-        self.date_from = date_from
-        self.date_to = date_to
-        self.host = host
-        self.version = version
+        ],
+        size: Annotated[
+            float,
+            Query(
+                default=...,
+                description="Total size of the page in Kb",
+                gt=0,
+                example=109,
+            ),
+        ],
+        requests: Annotated[
+            int,
+            Query(
+                default=...,
+                description="Number of requests of the page",
+                gt=0,
+                example=5,
+            ),
+        ],
+    ) -> None:
+        self.dom = dom
+        self.size = size
+        self.requests = requests

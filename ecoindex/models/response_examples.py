@@ -26,6 +26,20 @@ example_file_not_found = {
     },
 }
 
+example_page_listing_empty = {
+    "description": "Empty page",
+    "content": {
+        "application/json": {
+            "example": {
+                "items": [],
+                "total": 0,
+                "page": 1,
+                "size": 10,
+            }
+        }
+    },
+}
+
 example_daily_limit_response = {
     "description": "You have reached the daily limit",
     "content": {

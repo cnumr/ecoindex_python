@@ -9,7 +9,7 @@ from .compute import (  # noqa: F401
     Ecoindex,
     PageMetrics,
     PageType,
-    Requests,
+    Request,
     Result,
     ScreenShot,
     WebPage,
@@ -20,5 +20,6 @@ from .response_examples import (  # noqa: F401
     example_daily_limit_response,
     example_ecoindex_not_found,
     example_file_not_found,
+    example_page_listing_empty,
 )
 from .sort import Sort  # noqa: F401
