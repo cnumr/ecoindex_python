@@ -1,3 +1,5 @@
+:warning: This project is being replaced by [ecoindex_python_fullstack](https://github.com/cnumr/ecoindex_python_fullstack) and will be archived soon. Please refer to the new project for any contribution or issue. :warning:
+
 # ECOINDEX PYTHON
 
 ![Quality check](https://github.com/cnumr/ecoindex_python/workflows/Quality%20checks/badge.svg)
